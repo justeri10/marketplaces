@@ -15,8 +15,8 @@ from pathlib import Path
 
 
 st.set_page_config(
-    #page_title = "Marketplaces",
-    #page_icon = ":phone:",
+    page_title = "Marketplaces.",
+    page_icon = ":phone:",
     initial_sidebar_state="expanded",
 )
 
