@@ -62,6 +62,8 @@ st.text( f"Total non empty sellers with income 5 000 000 <= 100 000 000 : {df8['
 
 df10 = df8[['Продавец',
             'Выручка30',
+            'Упущенная выручка',
+            'Коммент.',
             'filter',
             '2022-12-28',
             '2022-12-29',
@@ -98,7 +100,7 @@ df10 = df8[['Продавец',
 
 df10 = df10.dropna()
 df11 = df10.groupby(['Продавец']).sum()
-st.dataframe(df11.style.highlight_max(color = 'lightgreen', axis=0))
+st.dataframe(df11.style.highlight_max(color = 'lightgreen', axis=0) , 5000, 1000)
 
 
 
