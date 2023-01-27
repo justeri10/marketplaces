@@ -36,6 +36,7 @@ for feature in [f'f_{i}' for i in range(300)]:
 train = pd.read_csv("list/petshop-28-12-2022-26-01-2023.csv", error_bad_lines=False , dtype=dtypes, sep = ',' )
 
 st.text( f"Total len: {len(train)}")
+st.text( f"Total len sellers non empty: {train['Продавец'].count()}")
 st.dataframe(train.head())
 
 
@@ -53,8 +54,9 @@ def sla_category(val):
         return 'неизвестно'
 
 train['filter'] = train['Выручка30'].apply(sla_category)
+
 df8 = train.loc[train['filter'].isin(['100mi'])]
-#df8.
+st.dataframe(df8)
 
 df10 = df8[['Продавец',
             'Выручка30',
@@ -92,6 +94,8 @@ df10 = df8[['Продавец',
             'Продаж',
             ]]
 
+
+st.dataframe(df10)
 
 df10 = df10.dropna()
 
