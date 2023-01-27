@@ -45,7 +45,7 @@ def sla_category(val):
         return '1mi'
     elif val <= 5000000:
         return '5mi'
-    elif val <= 1000000:
+    elif val <= 10000000:
         return '10mi'
     elif val <= 50000000:
         return '50mi'
@@ -53,7 +53,7 @@ def sla_category(val):
         return 'неизвестно'
 
 train['filter'] = train['Выручка30'].apply(sla_category)
-df8 = train.loc[train['filter'].isin(['10mi', '50mi'])]
+df8 = train.loc[train['filter'].isin(['50mi'])]
 #df8.
 
 df10 = df8[['Продавец',
