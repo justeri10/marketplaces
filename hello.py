@@ -93,6 +93,7 @@ df10 = df8[['Продавец',
             ]]
 
 
+df10 = df10.dropna()
 
 st.dataframe(df10)
 
