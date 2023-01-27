@@ -96,16 +96,8 @@ df10 = df8[['Продавец',
             'Продаж',
             ]]
 
-
-#st.dataframe(df10)
-
 df10 = df10.dropna()
-
-st.dataframe(df10)
-
 df11 = df10.groupby(['Продавец']).sum()
-
-st.dataframe(df11)
 st.dataframe(df11.style.highlight_max(color = 'lightgreen', axis=0))
 
 
