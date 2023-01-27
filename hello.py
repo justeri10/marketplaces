@@ -56,7 +56,9 @@ def sla_category(val):
 train['filter'] = train['Выручка30'].apply(sla_category)
 
 df8 = train.loc[train['filter'].isin(['100mi'])]
-st.dataframe(df8)
+
+st.text( f"Total non empty sellers with income 10 000 000 <= 100 000 000 : {df8['Выручка30'].count()}")
+#st.dataframe(df8)
 
 df10 = df8[['Продавец',
             'Выручка30',
@@ -95,7 +97,7 @@ df10 = df8[['Продавец',
             ]]
 
 
-st.dataframe(df10)
+#st.dataframe(df10)
 
 df10 = df10.dropna()
 
