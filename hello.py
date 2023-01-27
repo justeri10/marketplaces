@@ -48,7 +48,7 @@ fig_ticket_by_subtopics = px.bar(
     y="SKU",
     text="SKU",
     orientation="v",
-    title="<b>Tickets by category</b>",
+    title="<b>sellers by category</b>",
     color_discrete_sequence=["#0083B8"] * len(ticket_by_subtopics),
     template="plotly_white",
 )
@@ -59,6 +59,28 @@ fig_ticket_by_subtopics.update_layout(
 )
 
 st.plotly_chart(fig_ticket_by_subtopics, use_container_width=True)
+
+ticket_by_topics = (
+    train.groupby(by=["Бренд"]).count()[["SKU"]].sort_values(by="SKU")
+)
+
+#fig_ticket_by_topics = px.bar(
+#    ticket_by_topics,
+#    x=ticket_by_topics.index,
+#    y="SKU",
+#    text="SKU",
+#    orientation="v",
+#    title="<b>sellers by brand</b>",
+#    color_discrete_sequence=["#0083B8"] * len(ticket_by_topics),
+#    template="plotly_white",
+#)
+
+#fig_ticket_by_topics.update_layout(
+#    plot_bgcolor="rgba(0,0,0,0)",
+#    xaxis=(dict(showgrid=False))
+#)
+
+#st.plotly_chart(fig_ticket_by_topics, use_container_width=True)
 
 
 
@@ -101,6 +123,7 @@ df10 = df8[['Продавец',
             'Упущенная выручка',
             'Коммент.',
             'filter',
+            'Дней с продажами',
             '2022-12-28',
             '2022-12-29',
             '2022-12-30',
