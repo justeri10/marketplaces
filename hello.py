@@ -20,8 +20,6 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-#df1 = pd.read_csv('list/petshop-28-12-2022-26-01-2023.csv', )
-
 dtypes = {
     "SKU": "int32",
     "Продавец": "str",
@@ -32,12 +30,45 @@ dtypes = {
 for feature in [f'f_{i}' for i in range(300)]:
     dtypes[feature] = "float32"
 
-
 train = pd.read_csv("list/petshop-28-12-2022-26-01-2023.csv", error_bad_lines=False , dtype=dtypes, sep = ',' )
 
 st.text( f"Total len: {len(train)}")
 st.text( f"Total len sellers non empty: {train['Продавец'].count()}")
 st.dataframe(train.head())
+
+
+
+ticket_by_subtopics = (
+    train.groupby(by=["Категория"]).count()[["SKU"]].sort_values(by="SKU")
+)
+
+fig_ticket_by_subtopics = px.bar(
+    ticket_by_subtopics,
+    x=ticket_by_subtopics.index,
+    y="SKU",
+    text="SKU",
+    orientation="v",
+    title="<b>Tickets by category</b>",
+    color_discrete_sequence=["#0083B8"] * len(ticket_by_subtopics),
+    template="plotly_white",
+)
+
+fig_ticket_by_subtopics.update_layout(
+    plot_bgcolor="rgba(0,0,0,0)",
+    xaxis=(dict(showgrid=False))
+)
+
+st.plotly_chart(fig_ticket_by_subtopics, use_container_width=True)
+
+
+
+
+
+
+
+
+
+
 
 
 def sla_category(val):
@@ -54,12 +85,17 @@ def sla_category(val):
         return 'неизвестно'
 
 train['filter'] = train['Выручка30'].apply(sla_category)
-
 df8 = train.loc[train['filter'].isin(['100mi', '10mi', '5mi'])]
-
 st.text( f"Total non empty sellers with income 1 000 000 <= 100 000 000 : {df8['Выручка30'].count()}")
-#st.dataframe(df8)
 
+
+
+
+
+
+
+
+#st.dataframe(df8)
 df10 = df8[['Продавец',
             'Выручка30',
             'Упущенная выручка',
@@ -103,21 +139,14 @@ df11 = df10.groupby(['Продавец']).sum()
 st.dataframe(df11.style.highlight_max(color = 'lightgreen', axis=0) , 5000, 1000)
 
 
-
-
 #st.text(f"Heatmap:")
 #df10 = pd.pivot_table(df10, index='date', columns='hour', values='ticket number', aggfunc='count')
 #df10.fillna(0, inplace=True)
 #pivot.sort_values(by='total', ascending=False, inplace=True)
-
 #piv =  px.imshow(df10)
 #st.plotly_chart(piv, theme=None)
-
 #df10.sort_values(by='Выручка30', ascending=True, inplace=True)
-
-
 #with st.expander("Pivot"):
-
 #    pivot = pd.pivot_table(df10, index='Продавец', values='filter',aggfunc='count')
 #    pivot.sort_values(by='filter', ascending=True, inplace=True)
 #    pivot = pivot.style.format('{:.0}')\
