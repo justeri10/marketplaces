@@ -35,5 +35,4 @@ for feature in [f'f_{i}' for i in range(300)]:
 
 train = pd.read_csv("list/petshop-28-12-2022-26-01-2023.csv", dtype=dtypes, sep = ';' )
 
-st.text( f"Total len: {len(train)}")
-st.text( f"Total sellers: {train['Продавец'].count()}")
+st.text( f"Total CSI index: {len(train)}")
