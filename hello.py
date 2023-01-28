@@ -1,21 +1,9 @@
 import numpy as np
-#import matplotlib.colors as mcolors
-#import matplotlib.pyplot as plt
-import openpyxl as op
 import pandas as pd  # pip install pandas openpyxl
 import plotly.express as px  # pip install plotly-express
-#import plotly.figure_factory as ff
 import streamlit as st  # pip install streamlit
 import streamlit.components.v1 as components
-#import altair as alt
-import numpy as np
-#import os
-from pathlib import Path
-import gc
-import os
-#import seaborn as sns
-#import matplotlib.pyplot as plt
-#from matplotlib import colors
+
 
 st.set_page_config(
     page_title = "Marketplaces",
@@ -112,9 +100,7 @@ def sla_category(val):
 
 df['filter'] = df['Выручка30'].apply(sla_category)
 
-df1 = df.loc[df['filter'].isin(['5mi'])]
-df1.sort_values(by='Выручка30', ascending=False, inplace=True)
+df = df.loc[df['filter'].isin(['5mi'])]
+df.sort_values(by='Выручка30', ascending=False, inplace=True)
 
-st.dataframe(df1.style.highlight_max(color = 'lightgreen', axis=0) , 2000, 1000)
-#cm = sns.light_palette("#79C", as_cmap=True)
-#st.dataframe(df1.style.background_gradient(cm), 2000, 1000)
+st.dataframe(df.style.highlight_max(color = 'lightgreen', axis=0) , 2000, 1000)
