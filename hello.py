@@ -154,7 +154,7 @@ df10 = df8[['Продавец',
 
 df10 = df10.dropna()
 df11 = df10.groupby(['Продавец']).sum()
-st.text( f"Total non empty sellers with income 1 000 000 <= 100 000 000 : {df11['Выручка30'].count()}")
+st.text( f"Total non empty sellers with income 1 000 000 <= 500 000 000 : {df11['Выручка30'].count()}")
 df11.sort_values(by='Выручка30', ascending=False, inplace=True)
 st.dataframe(df11.style.highlight_max(color = 'lightgreen', axis=0) , 5000, 1000)
 
