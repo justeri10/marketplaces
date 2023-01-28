@@ -108,12 +108,6 @@ def sla_category(val):
 
 train['filter'] = train['Выручка30'].apply(sla_category)
 df8 = train.loc[train['filter'].isin(['100mi', '10mi', '5mi'])]
-st.text( f"Total non empty sellers with income 1 000 000 <= 100 000 000 : {df8['Выручка30'].count()}")
-
-
-
-
-
 
 
 
@@ -160,6 +154,7 @@ df10 = df8[['Продавец',
 
 df10 = df10.dropna()
 df11 = df10.groupby(['Продавец']).sum()
+st.text( f"Total non empty sellers with income 1 000 000 <= 100 000 000 : {df11['Выручка30'].count()}")
 st.dataframe(df11.style.highlight_max(color = 'lightgreen', axis=0) , 5000, 1000)
 
 
