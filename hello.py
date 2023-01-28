@@ -30,7 +30,7 @@ dtypes = {
 for feature in [f'f_{i}' for i in range(300)]:
     dtypes[feature] = "float32"
 
-train = pd.read_csv("list/petshop-28-12-2022-26-01-2023.csv", error_bad_lines=False , dtype=dtypes, sep = ',' )
+train = pd.read_csv("list/petshop-28-12-2022-26-01-2023.csv" , dtype=dtypes, sep = ',' )
 
 st.text( f"Total len: {len(train)}")
 st.text( f"Total len sellers non empty: {train['Продавец'].count()}")
@@ -81,16 +81,6 @@ ticket_by_topics = (
 #)
 
 #st.plotly_chart(fig_ticket_by_topics, use_container_width=True)
-
-
-
-
-
-
-
-
-
-
 
 
 def sla_category(val):
