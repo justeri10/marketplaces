@@ -36,7 +36,7 @@ st.text( f"Total len: {len(train)}")
 st.text( f"Total len sellers non empty: {train['Продавец'].count()}")
 st.dataframe(train.head())
 
-st.text( f"Total category: {train['Категория'].count()}")
+
 
 ticket_by_subtopics = (
     train.groupby(by=["Категория"]).count()[["SKU"]].sort_values(by="SKU")
