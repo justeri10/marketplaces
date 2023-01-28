@@ -13,9 +13,9 @@ import numpy as np
 from pathlib import Path
 import gc
 import os
-import seaborn as sns
-import matplotlib.pyplot as plt
-from matplotlib import colors
+#import seaborn as sns
+#import matplotlib.pyplot as plt
+#from matplotlib import colors
 
 st.set_page_config(
     page_title = "Marketplaces",
@@ -115,6 +115,6 @@ df['filter'] = df['Выручка30'].apply(sla_category)
 df1 = df.loc[df['filter'].isin(['5mi'])]
 df1.sort_values(by='Выручка30', ascending=False, inplace=True)
 
-#st.dataframe(df1.style.highlight_max(color = 'lightgreen', axis=0) , 2000, 1000)
-cm = sns.light_palette("#79C", as_cmap=True)
-st.dataframe(df1.style.background_gradient(cm), 2000, 1000)
+st.dataframe(df1.style.highlight_max(color = 'lightgreen', axis=0) , 2000, 1000)
+#cm = sns.light_palette("#79C", as_cmap=True)
+#st.dataframe(df1.style.background_gradient(cm), 2000, 1000)
